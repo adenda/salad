@@ -76,4 +76,9 @@ class SaladUIIDKeyAPI[SALAD,LETTUCE]
   : Future[Unit] =
     underlying.set(key, value, ex, px, nx, xx)(stringSerde, valSerde, executionContext)
 
+  def incr[DK](key: String)(implicit executionContext: ExecutionContext): Future[Option[Long]] =
+    underlying.incr(key)(stringSerde, executionContext)
+
+  def decr[DK](key: String)(implicit executionContext: ExecutionContext): Future[Option[Long]] =
+    underlying.decr(key)(stringSerde, executionContext)
 }

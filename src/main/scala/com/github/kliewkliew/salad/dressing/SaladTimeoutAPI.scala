@@ -113,4 +113,11 @@ class SaladTimeoutAPI[EK,EV,SALAD,LETTUCE]
   : Future[Unit] =
     timedRequest(underlying.set(key, value, ex, px, nx, xx))
 
+  def incr[DK](key: DK)(implicit keySerde: Serde[DK,EK], executionContext: ExecutionContext): Future[Option[Long]] = {
+    timedRequest(underlying.incr(key))
+  }
+
+  def decr[DK](key: DK)(implicit keySerde: Serde[DK,EK], executionContext: ExecutionContext): Future[Option[Long]] = {
+    timedRequest(underlying.decr(key))
+  }
 }

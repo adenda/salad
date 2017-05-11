@@ -112,4 +112,15 @@ class SaladLoggingAPI[EK,EV,SALAD,LETTUCE]
     resultF
   }
 
+  def incr[DK](key: DK)(implicit keySerde: Serde[DK,EK], executionContext: ExecutionContext): Future[Option[Long]] = {
+    val resultF = underlying.incr(key)
+    resultF.onComplete(result => SaladStringCommandLogger.incr(key)(result))
+    resultF
+  }
+
+  def decr[DK](key: DK)(implicit keySerde: Serde[DK,EK], executionContext: ExecutionContext): Future[Option[Long]] = {
+    val resultF = underlying.decr(key)
+    resultF.onComplete(result => SaladStringCommandLogger.decr(key)(result))
+    resultF
+  }
 }

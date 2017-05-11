@@ -46,4 +46,22 @@ trait SaladStringCommands[EK,EV,API] {
                 (implicit keySerde: Serde[DK,EK], valSerde: Serde[DV,EV], executionContext: ExecutionContext)
   : Future[Unit]
 
+  /**
+    * Increment a Key.
+    * @param key The key for which to increment the value.
+    * @param keySerde The serde to encode the key.
+    * @param executionContext The thread dispatcher.
+    * @return A Future containing an Option of the incremented value.
+    */
+  def incr[DK](key: DK)(implicit keySerde: Serde[DK,EK], executionContext: ExecutionContext): Future[Option[Long]]
+
+  /**
+    * Decrement.
+    * @param key The key for which decrement the value.
+    * @param keySerde The serde to encode the key.
+    * @param executionContext The thread dispatcher.
+    * @return A Future containing an Option of the incremented value.
+    */
+  def decr[DK](key: DK)(implicit keySerde: Serde[DK,EK], executionContext: ExecutionContext): Future[Option[Long]]
+
 }

@@ -28,4 +28,25 @@ object SaladStringCommandLogger extends BinaryLogger("SaladStringCommands") {
           s"Failed to set key, value: $key, $value", t)
     }
 
+  def incr[DK](key: DK) (result: Try[Option[Long]]) =
+    result match {
+      case Success(Some(value)) =>
+        success.log(s"Incremented key: $key")
+      case Success(None) =>
+        success.log(s"No value for key: $key")
+      case Failure(t) =>
+        failure.log(
+          s"Failed to increment key: $key", t)
+    }
+
+  def decr[DK](key: DK) (result: Try[Option[Long]]) =
+    result match {
+      case Success(Some(value)) =>
+        success.log(s"Decremented key: $key")
+      case Success(None) =>
+        success.log(s"No value for key: $key")
+      case Failure(t) =>
+        failure.log(
+          s"Failed to decrement key: $key", t)
+    }
 }

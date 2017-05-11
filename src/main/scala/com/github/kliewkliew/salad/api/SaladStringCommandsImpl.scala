@@ -19,6 +19,11 @@ import scala.util.Try
 trait SaladStringCommandsImpl[EK,EV,API] extends SaladStringCommands[EK,EV,API] {
   def underlying: API with RedisStringAsyncCommands[EK,EV]
 
+  /**
+  * @tparam DK The unencoded key type.
+  * @tparam DV The unencoded value type.
+  */
+
   def get[DK,DV](key: DK)
                 (implicit keySerde: Serde[DK,EK], valSerde: Serde[DV,EV], executionContext: ExecutionContext)
   : Future[Option[DV]] =
@@ -40,4 +45,9 @@ trait SaladStringCommandsImpl[EK,EV,API] extends SaladStringCommands[EK,EV,API] 
     Try(underlying.set(keySerde.serialize(key), valSerde.serialize(value), args)).toFuture.isOK
   }
 
+  def incr[DK](key: DK)(implicit keySerde: Serde[DK,EK], executionContext: ExecutionContext): Future[Option[Long]] =
+    Try(underlying.incr(keySerde.serialize(key))).toFuture.map(value => Option.apply(value))
+
+  def decr[DK](key: DK)(implicit keySerde: Serde[DK,EK], executionContext: ExecutionContext): Future[Option[Long]] =
+    Try(underlying.decr(keySerde.serialize(key))).toFuture.map(value => Option.apply(value))
 }
