@@ -139,7 +139,14 @@ salad {
 }
 ```
 
-# SBT
+# Development
+
+## Running Tests
+
+To run the test suite you'll need a redis cluster running on localhost. The test suite uses ScalaTest. To run tests use `sbt test`.
+
+## SBT
+
 TODO: publish jars to Maven repo
 
 Salad depends on lettuce 5.x.
@@ -148,7 +155,7 @@ Salad depends on lettuce 5.x.
 libraryDependencies += "biz.paluch.redis" % "lettuce" % "5.0.0.Beta1"
 ```
 
-## Netty Version Conflict
+### Netty Version Conflict
 If the Netty version of lettuce conflicts with your application (ie. Play 2.5), add an exclusion rule to lettuce.
 ```
 libraryDependencies += "biz.paluch.redis" % "lettuce" % "5.0.0.Beta1" excludeAll ExclusionRule(organization = "io.netty")
