@@ -4,6 +4,8 @@ object StringSerdes {
 
   implicit val byteArraySerde = new ByteArrayStringSerde
 
+  implicit val stringByteArraySerde = new StringByteArraySerde
+
   implicit val stringSerde = new StringStringSerde
 
   implicit val byteSerde = new ByteStringSerde
