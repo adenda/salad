@@ -2,6 +2,7 @@ package com.github.kliewkliew.salad.dressing
 
 import com.github.kliewkliew.salad.api.SaladServerCommands
 import com.github.kliewkliew.salad.serde.Serde
+import com.github.kliewkliew.salad.serde.StringSerdes._
 
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -13,10 +14,9 @@ object SaladServerCommandsAPI {
   * API for Salad server commands
   * @see the composing traits for javadocs.
   * @param underlying The lettuce async API to be wrapped.
-  * @tparam EK The key storage encoding.
-  * @tparam EV The value storage encoding.
   */
-class SaladServerCommandsAPI[EK,EV,SALAD,LETTUCE](val underlying: SALAD with SaladServerCommands[EK,EV,LETTUCE]) {
+class SaladServerCommandsAPI[SALAD,LETTUCE](val underlying: SALAD
+  with SaladServerCommands[String,String,LETTUCE]) {
   import SaladServerCommandsAPI._
 
   /**
@@ -26,7 +26,7 @@ class SaladServerCommandsAPI[EK,EV,SALAD,LETTUCE](val underlying: SALAD with Sal
     *         of this map are Maps, with key-values corresponding to info section fields.
     */
   def info(section: Option[String] = None)
-              (implicit keySerde: Serde[String,EK], valSerde: Serde[String,String], executionContext: ExecutionContext)
+              (implicit keySerde: Serde[String,String], valSerde: Serde[String,String], executionContext: ExecutionContext)
   : Future[ServerInfo] = {
 
     def getServerInfoForSection(result: Future[String], s: String): Future[ServerInfo] = {

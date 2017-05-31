@@ -15,6 +15,7 @@ object SaladConnection {
 
   private object Standalone {
     type Connection = StatefulRedisConnection[Array[Byte],Array[Byte]]
+    type ServerCommandsConnection = StatefulRedisConnection[String,String]
     val uri = "redis://127.0.0.1"
   }
 
@@ -33,6 +34,10 @@ object SaladConnection {
     case c => c.asInstanceOf[Standalone.Connection].async()
   }
 
+  private val serverCommandslettuceAPI = connection map {
+    case c => c.asInstanceOf[Standalone.ServerCommandsConnection].async()
+  }
+
   private val api = lettuceAPI.map { lettuce =>
     new SaladUIIDKeyAPI(
       new SaladLoggingAPI(
@@ -40,7 +45,7 @@ object SaladConnection {
           new SaladAPI(lettuce))))
   }
 
-  private val serverCommandsApi = lettuceAPI.map { lettuce =>
+  private val serverCommandsApi = serverCommandslettuceAPI.map { lettuce =>
       new SaladServerCommandsAPI(
         new SaladAPI(lettuce)
       )
