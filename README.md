@@ -1,4 +1,5 @@
 # Salad
+
 Salad wraps the lettuce async and sync Java API to provide an idiomatic API for Scala applications.
 
 Efficient serdes (serializer-deserializers) are provided to encode keys and values as plain byte-arrays or Snappy-compressed byte-arrays.
@@ -8,6 +9,10 @@ Single-node Redis, master-slave Sentinel configurations, and sharded Redis Clust
 
 Salad also ensures that all exceptions thrown by lettuce can be mapped over in Scala futures.
 If you used lettuce directly, exceptions in lettuce might not trigger `Future.failed` in Scala.
+
+## About this fork
+
+This is a fork from [`com.github.kliewkliew`](https://github.com/kliewkliew/salad).
 
 # Usage
 `SaladAPI` is the base wrapper around the lettuce API.
@@ -143,7 +148,7 @@ salad {
 
 ## Running Tests
 
-To run the test suite you'll need a redis cluster running on localhost. The test suite uses ScalaTest. To run tests use `sbt test`.
+To run the test suite you'll need a redis server running on localhost. The test suite uses ScalaTest. To run tests use `sbt test`.
 
 ## SBT
 
