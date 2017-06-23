@@ -1,7 +1,7 @@
 name := "salad"
 organization := "com.adendamedia"
 
-version := "0.9.0"
+version := "0.9.2"
 
 scalaVersion := "2.11.8"
 
@@ -20,3 +20,15 @@ libraryDependencies ++= Seq(
   "org.xerial.snappy" % "snappy-java" % "1.1.2.1",
   "org.slf4j" % "slf4j-api" % "1.7.22"
 ) ++ testDependencies
+
+
+pomIncludeRepository := { _ => false }
+
+// Add sonatype repository settings
+publishTo := Some(
+  if (isSnapshot.value)
+    Opts.resolver.sonatypeSnapshots
+  else
+    Opts.resolver.sonatypeStaging
+)
+
