@@ -163,6 +163,25 @@ trait SaladClusterCommands[EK,EV,API] {
       reset
     }
 
+  /**
+    * Get information and statistics about the cluster viewed by the current node.
+    * @return Future[Map[String,String]] on success, mapping the cluster info keys to cluster info values, else
+    *         Future.failed(Exception)
+    */
+  def clusterInfo(implicit executionContext: ExecutionContext): Future[Map[String,String]] =
+    Try(underlying.clusterInfo).toFuture map { bulkResponse: String =>
+      val items = bulkResponse.split(Array('\n')).map(_.stripSuffix("\r"))
+      items.foldLeft(Map.empty[String,String]) { (map, item) =>
+        if (item.nonEmpty) {
+          val parts = item.split(':')
+          val key = parts(0)
+          val value = parts(1)
+          map + (key -> value)
+        }
+        else map
+      }
+    }
+
   def clusterMyId: Future[String] =
     Try(underlying.clusterMyId).toFuture
 
@@ -190,5 +209,6 @@ trait SaladClusterCommands[EK,EV,API] {
     clusterNodes.map(_.filter(Role.SLAVE == _.getRole))
   def slaveNodes(amongNodes: mutable.Buffer[RedisClusterNode]): mutable.Buffer[RedisClusterNode] =
     amongNodes.filter(Role.SLAVE == _.getRole)
+
 
 }
