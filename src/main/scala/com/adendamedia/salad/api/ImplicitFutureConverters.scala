@@ -1,6 +1,6 @@
 package com.adendamedia.salad.api
 
-import com.lambdaworks.redis.RedisFuture
+import io.lettuce.core.RedisFuture
 
 import scala.compat.java8.FutureConverters._
 import scala.concurrent.{ExecutionContext, Future}

@@ -1,6 +1,6 @@
 package com.adendamedia.salad.dressing.logging
 
-import com.lambdaworks.redis.RedisURI
+import io.lettuce.core.RedisURI
 
 import scala.util.{Failure, Success, Try}
 

@@ -2,8 +2,8 @@ package com.adendamedia.salad.api
 
 import ImplicitFutureConverters._
 import com.adendamedia.salad.serde.Serde
-import com.lambdaworks.redis.SetArgs
-import com.lambdaworks.redis.api.async.RedisStringAsyncCommands
+import io.lettuce.core.SetArgs
+import io.lettuce.core.api.async.RedisStringAsyncCommands
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.Try

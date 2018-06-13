@@ -3,9 +3,9 @@ package com.adendamedia.salad
 import java.util.concurrent.TimeUnit
 
 import com.adendamedia.salad.dressing.{SaladLoggingAPI, SaladServerCommandsAPI, SaladTimeoutAPI, SaladUIIDKeyAPI}
-import com.lambdaworks.redis.{ClientOptions, RedisClient}
-import com.lambdaworks.redis.codec.ByteArrayCodec
-import com.lambdaworks.redis.api.StatefulRedisConnection
+import io.lettuce.core.{ClientOptions, RedisClient}
+import io.lettuce.core.codec.ByteArrayCodec
+import io.lettuce.core.api.StatefulRedisConnection
 
 import scala.util.Try
 

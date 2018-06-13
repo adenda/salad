@@ -5,10 +5,10 @@ import java.net.InetAddress
 import ImplicitFutureConverters._
 import com.adendamedia.salad.dressing.logging.{FailureLogger, SuccessLogger}
 import com.adendamedia.salad.serde.Serde
-import com.lambdaworks.redis.RedisURI
-import com.lambdaworks.redis.cluster.api.async.RedisClusterAsyncCommands
-import com.lambdaworks.redis.cluster.models.partitions.{ClusterPartitionParser, RedisClusterNode}
-import com.lambdaworks.redis.models.role.RedisInstance.Role
+import io.lettuce.core.RedisURI
+import io.lettuce.core.cluster.api.async.RedisClusterAsyncCommands
+import io.lettuce.core.cluster.models.partitions.{ClusterPartitionParser, RedisClusterNode}
+import io.lettuce.core.models.role.RedisInstance.Role
 import org.slf4j.LoggerFactory
 
 import scala.collection.mutable

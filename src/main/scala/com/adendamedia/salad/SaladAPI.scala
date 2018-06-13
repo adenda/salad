@@ -1,8 +1,8 @@
 package com.adendamedia.salad
 
 import com.adendamedia.salad.api._
-import com.lambdaworks.redis.api.async._
-import com.lambdaworks.redis.cluster.api.async.RedisClusterAsyncCommands
+import io.lettuce.core.api.async._
+import io.lettuce.core.cluster.api.async.RedisClusterAsyncCommands
 
 /**
   * Wrap the lettuce API to provide an idiomatic Scala API.

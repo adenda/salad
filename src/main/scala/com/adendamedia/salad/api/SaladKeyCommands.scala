@@ -1,7 +1,7 @@
 package com.adendamedia.salad.api
 
 import com.adendamedia.salad.serde.Serde
-import com.lambdaworks.redis.RedisURI
+import io.lettuce.core.RedisURI
 
 import scala.concurrent.{ExecutionContext, Future}
 

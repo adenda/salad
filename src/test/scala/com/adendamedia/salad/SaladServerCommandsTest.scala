@@ -5,7 +5,6 @@ import com.adendamedia.salad.serde.StringSerdes._
 import com.adendamedia.salad.dressing.SaladServerCommandsAPI._
 
 import scala.concurrent.Future
-import scala.concurrent.ExecutionContext.Implicits.global
 import SaladConnection._
 
 class SaladServerCommandsTest extends AsyncFlatSpec {
