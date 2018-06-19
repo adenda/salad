@@ -3,7 +3,7 @@ package com.adendamedia.salad.dressing
 import com.adendamedia.salad.api.{SaladHashCommands, SaladKeyCommands, SaladStringCommands}
 import com.adendamedia.salad.serde.Serde
 import com.adendamedia.salad.serde.ByteArraySerdes.stringSerde
-import com.lambdaworks.redis.RedisURI
+import io.lettuce.core.RedisURI
 
 import scala.concurrent.{ExecutionContext, Future}
 

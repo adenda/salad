@@ -1,0 +1,21 @@
+language: scala
+sudo: required
+dist: trusty
+
+scala:
+  - 2.12.6
+
+jdk:
+  - oraclejdk8
+
+cache:
+  directories:
+    - $HOME/.ivy2/cache
+    - $HOME/.sbt/boot
+
+services:
+  - redis-server
+  
+script:
+  - sbt ++$TRAVIS_SCALA_VERSION clean test
+

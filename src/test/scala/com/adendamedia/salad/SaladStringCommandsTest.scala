@@ -4,7 +4,6 @@ import org.scalatest.AsyncFlatSpec
 import com.adendamedia.salad.serde.ByteArraySerdes._
 
 import scala.concurrent.Future
-import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.Random
 import SaladConnection._
 

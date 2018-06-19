@@ -4,7 +4,7 @@ import akka.actor.ActorSystem
 import akka.pattern.after
 import com.adendamedia.salad.api.{SaladHashCommands, SaladKeyCommands, SaladStringCommands}
 import com.adendamedia.salad.serde.Serde
-import com.lambdaworks.redis.RedisURI
+import io.lettuce.core.RedisURI
 import com.typesafe.config.ConfigFactory
 
 import scala.concurrent.duration._
